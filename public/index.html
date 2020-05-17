@@ -26,7 +26,6 @@
 				cursor: text;
 				box-sizing: border-box;
 				font-size: 15px;
-				overflow-y: auto;
 				resize: none;
 				border: 2px solid lightgrey;
 				background-color: grey;
@@ -41,7 +40,6 @@
 				white-space: pre;
 				word-wrap: normal;
 				overflow-wrap: normal;
-				overflow-y: auto;
 				cursor: text;
 				box-sizing: border-box;
 				font-size: 15px;
@@ -78,6 +76,14 @@
 	var ENTER = 13;
 	var line = 1;
 	var code;
+	var $divs = $('.code-line, #code');
+var sync = function(e){
+    var $other = $divs.not(this).off('scroll'), other = $other.get(0);
+    var percentage = this.scrollTop / (this.scrollHeight - this.offsetHeight);
+    other.scrollTop = percentage * (other.scrollHeight - other.offsetHeight);
+    setTimeout( function(){ $other.on('scroll', sync ); },10);
+}
+$divs.on( 'scroll', sync);
 	function check(e){
 			code = e.keyCode;
 			if(code == 9){
@@ -88,7 +94,6 @@
 			if(code == 13){
 				$('.code-line').val($('.code-line').val() + line + '\n');
 				line = line + 1;
-				
 			}
 	}
 </script>
