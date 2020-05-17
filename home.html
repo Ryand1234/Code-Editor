@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Code Editor</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style type="text/css">
+		body{
+			background-color: black;
+		}
+		.editor-head{
+			background-color: pink;
+			text-align: center;
+		}
+		.editor-outer-margin{
+			margin: solid white 50cm;
+			color: white;
+
+		}
+		.editor-inner-margin{
+			margin: 30cm white solid;
+			padding-left: 15cm white solid;
+			color: white
+;		}
+		.editor-code {
+				width: 100%;
+				float: left;
+				height: 150px;
+				overflow: hidden;
+				overflow-x: hidden;
+				overflow-y: hidden;
+				white-space: pre;
+				word-wrap: normal;
+				overflow-wrap: normal;
+				cursor: text;
+				box-sizing: border-box;
+				resize: none;
+				border: 2px solid lightgrey;
+				background-color: grey;
+			}
+	</style>
+</head>
+<body>
+	<h1 class="editor-head">Code Editor</h1>
+	<div class="editor-outer-margin">
+		<div class="editor-inner-margin"></div>
+	</div>
+	<textarea class="editor-code" id="code" onkeydown="check(event)"></textarea>
+</body>
+<script type="text/javascript">text/javascript
+	var TABKEY = 9;
+	var code;
+	function check(e){
+			code = e.keyCode;
+			if(code == 9){
+				$('#code').val($('#code').val() + "    ")
+				e.preventDefault();
+			}
+	}
+</script>
+</html>
